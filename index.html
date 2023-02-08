@@ -2,14 +2,41 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="estilo.css" />
     <title>Paleta de Cores</title>
     <script src="script.js"></script>
+
   </head>
 
   <body>
 
+    <h1 id="title">Paleta de Cores</h1>
+    
+    <section id="color-palette" class="color-palette">
+        <div style="background-color: #000000;" class="color clickable selected"></div>
+        <div class="color clickable"></div>
+        <div class="color clickable"></div>
+        <div class="color clickable"></div>
+    </section>
 
+    <section class="funcionalidades">
+      <button id="button-random-color" class="clickable" >Cores aleatórias</button>
+      <button id="button-pattern-color" class="clickable" >Cores Padrão</button>
+      <button id="clear-board" class="clickable" >Limpar</button>
+      <button id="clean-board" class="clickable" >Borracha</button>
+      <button id="save" class="clickable" >Save</button>
+      
+        <input type="number" id="board-size" min="1" title="Insira um numero maior que 0" />
+        <button id="generate-board" class="clickable">VQV</button>
+      
+      
+    </section>
+    <main>
+      <section id="pixel-board" class="color-paint"></section>
+    </main>
+    
 
   </body>
+
+ 
 </html

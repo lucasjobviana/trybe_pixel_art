@@ -1,0 +1,87 @@
+.clickable:hover {
+    cursor: pointer;  
+}
+
+body {
+    background-color: blueviolet;
+    max-width: 3000px;
+}
+
+#color-palette {
+    position: sticky;
+    top: 0.1px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100px;
+    height: 25px;  
+    
+}
+
+.funcionalidades {
+    text-align: center;
+}
+
+.color {
+    border-radius: 50%;
+    border: 1px solid #000000;
+    margin: 1px;
+    flex-grow: 1;/*define proporção de largura por indice*/
+}
+
+.color:hover {  
+    opacity:0.4;
+}
+
+.selected {
+   
+    opacity:2;
+}
+.color-selected {
+    background-color: blue;
+    opacity:0.4;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.color-paint {
+    background-color: brown;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    
+    
+    flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.pixel {
+    /*flex-grow: 1;define proporção de largura por indice*/
+    height: 40px; 
+    width: 40px;
+    border: 1px solid #000000;
+   
+
+    background-color: white;
+}
+
+.pixel:hover {  
+    background-color: aqua;
+    
+    cursor: url(http://www.webcis.com.br/images/lupa-clientes.cur), default;
+    
+    
+    
+    
+    
+}
