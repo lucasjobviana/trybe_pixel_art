@@ -56,8 +56,7 @@ function updateColorPencil(cor) {//Null - (addEventClick) - Altera a cor pixel p
                let a =  pixelBoard[i].classList.add('whiteCursor');
               
                console.info('class:');
-                console.info(a);
-                
+                console.info(a);    
             }
             //let matriz = analisarMatriz();
             //saveLStorage('pixelBoard', matriz);  
