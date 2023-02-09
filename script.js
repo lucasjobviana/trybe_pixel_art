@@ -52,13 +52,13 @@ function deselectOtherColors(indexSelected,paletteCollors){
 
 function updateColorPencil(cor) {
     let pixelBoard = document.getElementsByClassName('pixel');
-    pattern.corPincel = cor;//console.info(pixelBoard);
+    pattern.corPincel = cor;
 
     for (let i = 0; i < pixelBoard.length; i += 1 ){
         pixelBoard[i].addEventListener('click', function(){
-            pixelBoard[i].style.backgroundColor = cor;//////////////////////////////////////////
-        });//console.info(pixelBoard[i]);
-    }//console.info(cor)
+            pixelBoard[i].style.backgroundColor = cor;
+        });
+    }
 }
 
 function definirClick(){
@@ -69,7 +69,7 @@ function definirClick(){
         let cor = paletteCollors[i].style.backgroundColor;console.log('esta é a cor do fundo: ',cor);
         paletteCollors[i].classList.add('selected');
         deselectOtherColors(i,paletteCollors);
-        pattern.corPencil = cor;////////////////////////////////
+        pattern.corPencil = cor;
         updateColorPencil(cor);
         console.log('Alteri patternPincel: ',pattern.corPincel);    
         });
@@ -85,7 +85,6 @@ function pixelAdd(qtdPixel, row, matrizColor,orderPixel) {
     for(let i=0; i< qtdPixel; i +=1){
         let pixel = document.createElement('div');
         pixel.className = 'pixel';
-        //pixel.style.backgroundColor = 
         pixel.style.backgroundColor = Array.isArray( matrizColor)  ?   matrizColor[orderPixel] : corFundo ;
         pixel.textContent = orderPixel-1;
         row.append(pixel);
@@ -100,13 +99,9 @@ function pixelRowAdd(qtdRows,collum, matrizColor) {
     for (let i = 0; i < qtdRows; i += 1){
         let row = document.createElement('div');
         row.className = 'row';
-        pixelBoard.append(row);
-        //console.info('eeeeeesete eh o j',j,matrizColor);
-        
+        pixelBoard.append(row);       
         orderPixel = pixelAdd(collum,row,matrizColor,orderPixel);
-        //j++;
-    }
-    
+    }   
 }
 
 function createPixelMatriz(row, collum, matrizColor) {
@@ -120,40 +115,21 @@ function populaMatriz(isSave) {
     console.info('Meu array salvo é:',args);
 
     createPixelMatriz(args[0],args[1],args);
-
-    //ja estou reconhecendo se tem algum padrao salvo o localestorage, agr precisso popula==lo com os dados do issave
 }
+
 window.onbeforeunload = function () {
     let matriz = analisarMatriz();
         saveLStorage('pixelBoard', matriz);
         let value = document.getElementById('board-size').value;     
-        //localStorage.setItem('boardSize',value);
  }
 
 window.onload = function(){
-
     let a = localStorage.getItem('boardSize');
-    console.info('dfdsfdsfdsfdsfdsfdsfsfsdfdsafdsfds');
-    console.info(a);
-    if(a == ''){
-       // alert('tem');
-    }else{
-        //alert('nao tem')
-    }
-
-    
-
-
     let widthSave = localStorage.getItem('boardSize')==null? 5 : localStorage.getItem('boardSize') ;
-    console.info('______');
-    console.log('widthSave:',widthSave);
-    console.log('widthSave:',localStorage.getItem('boardSize'));
-    console.info('______');
     document.getElementsByClassName('color-paint')[0].style.width = (40 * widthSave)+'px';
     document.getElementsByClassName('color-paint')[0].style.height = (40 * widthSave)+'px';
+    let isSave = localStorage.getItem('pixelBoard');
 
-
-    let isSave = localStorage.getItem('pixelBoard');//console.info(isSave);
     if(isSave) {
         populaMatriz(isSave);
     }else {
@@ -168,7 +144,6 @@ window.onload = function(){
     /*verifica se ja tem cores salvas no storage*/
     if(colors){
         let cor = colors.split('&');
-        //console.info('Tem storage',localStorage);console.info(cor);console.info(cor[2]);
         for ( let i = 1; i < colorOfPalette.length; i += 1 ) {
             let corHexa = generateColor();
             colorOfPalette[i].style.backgroundColor  = cor[i-1];
@@ -179,43 +154,42 @@ window.onload = function(){
             colorOfPalette[i].style.backgroundColor  = corPadrao[i];
         }
     }
+
     let btnClean = document.getElementById('clean-board').addEventListener('click',function(){
         updateColorPencil('#FFFFFF')
     });
+
     let btnClear = document.getElementById('clear-board').addEventListener('click',function(){
         document.getElementById('pixel-board').innerHTML = '';
        pixelRowAdd(pattern.row, pattern.collum);
     });
 
-    /**/
-   let btnRandomColor = document.getElementById('button-random-color');// console.info(a);
-   btnRandomColor.addEventListener('click',function(){
+    let btnRandomColor = document.getElementById('button-random-color');
+    btnRandomColor.addEventListener('click',function(){
         alterColor();
     });
 
-    let btnPatterColor = document.getElementById('button-pattern-color');// console.info(a);
+    let btnPatterColor = document.getElementById('button-pattern-color');
     btnPatterColor.addEventListener('click',function(){
-    localStorage.removeItem('colorPalette');
-    let colorOfPalette = document.getElementById('color-palette').children;
+        localStorage.removeItem('colorPalette');
+        let colorOfPalette = document.getElementById('color-palette').children;
 
-    for ( let i = 0; i < colorOfPalette.length; i += 1 ) {
-        let corHexa = generateColor();
-        colorOfPalette[i].style.backgroundColor  = corPadrao[i];
-    }
+        for ( let i = 0; i < colorOfPalette.length; i += 1 ) {
+            let corHexa = generateColor();
+            colorOfPalette[i].style.backgroundColor  = corPadrao[i];
+        }
     });
 
     let btnSalvar = document.getElementById('save');
     btnSalvar.addEventListener('click',function(){
-        
         let matriz = analisarMatriz();
         saveLStorage('pixelBoard', matriz);
-
     });
+
     let btnGerarGrid = document.getElementById('generate-board');
     btnGerarGrid.addEventListener('click',function(){
         let value = document.getElementById('board-size').value;
-        if(Number.parseInt(value) > 0) {
-                
+        if(Number.parseInt(value) > 0) {   
             if(Number.parseInt(value) <5)
              value =5;
             if(Number.parseInt(value) >50)
@@ -226,7 +200,7 @@ window.onload = function(){
             localStorage.removeItem('pixelBoard');
             localStorage.setItem('pixelBoard',`${value}&${value}&`);
             localStorage.setItem('boardSize',value);
-            createPixelMatriz(pattern.row,pattern.collum);//////////////////////
+            createPixelMatriz(pattern.row,pattern.collum);
         }
         else {
             alert('Board inválido!');
@@ -248,8 +222,6 @@ function analisarMatriz() {
         else {
             resolutin += '_&';
         }
-        
-        
     }
     console.log(resolutin);
     return resolutin;
