@@ -52,8 +52,15 @@ function updateColorPencil(cor) {//Null - (addEventClick) - Altera a cor pixel p
     for (let i = 0; i < pixelBoard.length; i += 1 ){
         pixelBoard[i].addEventListener('click', function(){
             pixelBoard[i].style.backgroundColor = cor;
-            let matriz = analisarMatriz();
-            saveLStorage('pixelBoard', matriz);  
+            if(cor == '#000000'){
+               let a =  pixelBoard[i].classList.add('whiteCursor');
+              
+               console.info('class:');
+                console.info(a);
+                
+            }
+            //let matriz = analisarMatriz();
+            //saveLStorage('pixelBoard', matriz);  
         });
     }
 }
@@ -109,8 +116,8 @@ function analisarMatriz() {//String - Retorna ('rows')'&'('collums')'&'cores da 
 }
 
 window.onbeforeunload = function () {//Null - Salva a matriz atual no localStorage.pixelBoard
-    //let matriz = analisarMatriz();
-    //saveLStorage('pixelBoard', matriz);    
+    let matriz = analisarMatriz();
+    saveLStorage('pixelBoard', matriz);    
  }
 
 function defineClickEvents() {// start - enventClicks

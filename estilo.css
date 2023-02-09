@@ -70,18 +70,12 @@ main {
     height: 40px; 
     width: 40px;
     border: 1px solid #000000;
-   
+
+       cursor: url(img/a_25x.png),default;
 
     background-color: white;
 }
 
-.pixel:hover {  
-    background-color: aqua;
-    
-    cursor: url(http://www.webcis.com.br/images/lupa-clientes.cur), default;
-    
-    
-    
-    
-    
+.whiteCursor{
+    cursor: url(img/white.png ),default;
 }
