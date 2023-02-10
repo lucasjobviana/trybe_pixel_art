@@ -25,8 +25,11 @@
       <button id="clear-board" class="clickable" >Limpar</button>
       <button id="clean-board" class="clickable" >Borracha</button>
       <button id="save" class="clickable" >Save</button>
-      <label for="board-size">Pixel - Line:
-        <input type="number" id="board-size" min="1" title="Insira um numero maior que 0" />
+      <label for="board-size">Linhas:
+        <input type="number" id="board-size" min="1" max="20" title="Insira um número entre 0 e 20.." />
+      </label>
+      <label for="board-size-collum">Colunas:
+        <input type="number" id="board-size-collum" min="1" max="40" title="Insira um número entre 0 e 20.">
       </label>
       <button id="generate-board" class="clickable">VQV</button>      
     </section>

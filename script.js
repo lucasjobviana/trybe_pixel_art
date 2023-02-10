@@ -147,19 +147,21 @@ function defineClickEvents() {// start - enventClicks
     });
 
     document.getElementById('generate-board').addEventListener('click',function(){//Gera e salva uma nova matriz com um novo tamanho
-        let value = document.getElementById('board-size').value;
+        let valueRow = document.getElementById('board-size').value;
+        let valueCollum = document.getElementById('board-size-collum').value;
 
-        if(Number.parseInt(value) > 0) {   
-            if(Number.parseInt(value) <5)
-             value =5;
-            if(Number.parseInt(value) >50)
-             value =50;
+        if(Number.parseInt(valueRow) > 0) {   
+            if(Number.parseInt(valueRow) <5)
+             valueRow =5;
+            if(Number.parseInt(valueRow) >50)
+             valueRow =50;
             document.getElementById('pixel-board').innerHTML = '';
-            pattern.row = value;
-            pattern.collum = value;
+            pattern.row = valueRow;
+            pattern.collum = valueCollum;
             localStorage.removeItem('pixelBoard');
-            localStorage.setItem('pixelBoard',`${value}&${value}&`);
-            localStorage.setItem('boardSize',value);
+            localStorage.setItem('pixelBoard',`${valueRow}&${valueCollum}&`);
+            localStorage.setItem('boardSize',valueRow);
+            localStorage.setItem('boardSizeCollum',valueCollum);
             createPixelMatriz(pattern.row,pattern.collum);
         }
         else {
@@ -187,7 +189,9 @@ function defineClickEvents() {// start - enventClicks
 //final - eventClicks
 window.onload = function(){
     
-    let a = localStorage.getItem('boardSize');
+    let boardSizeRow = localStorage.getItem('boardSize');
+    let boardSizeCollum = localStorage.getItem('boardSizeCollum');
+    
     let widthSave = localStorage.getItem('boardSize')==null? 5 : localStorage.getItem('boardSize') ;
     document.getElementsByClassName('color-paint')[0].style.width = (40 * widthSave)+'px';
     document.getElementsByClassName('color-paint')[0].style.height = (40 * widthSave)+'px';
@@ -199,6 +203,8 @@ window.onload = function(){
         createPixelMatriz(pattern.row,pattern.collum);
         let value = document.getElementById('board-size').value;
         localStorage.setItem('boardSize',value);
+        value = document.getElementById('board-size-collum').value;
+        localStorage.setItem('boardSizeCollum',value);
     }
     
     updateColorPencil('#000000');
