@@ -71,11 +71,11 @@ main {
     width: 40px;
     border: 1px solid #000000;
 
-       cursor: url(img/a_25x.png),default;
+    cursor: url(img/a_25x.png) 10 20,default;
 
     background-color: white;
 }
 
 .whiteCursor{
-    cursor: url(img/white.png ),default;
+    cursor: url(img/white.png ) 10 20, default;  
 }

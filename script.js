@@ -52,14 +52,9 @@ function updateColorPencil(cor) {//Null - (addEventClick) - Altera a cor pixel p
     for (let i = 0; i < pixelBoard.length; i += 1 ){
         pixelBoard[i].addEventListener('click', function(){
             pixelBoard[i].style.backgroundColor = cor;
-            if(cor == '#000000'){
-               let a =  pixelBoard[i].classList.add('whiteCursor');
-              
-               console.info('class:');
-                console.info(a);    
-            }
-            //let matriz = analisarMatriz();
-            //saveLStorage('pixelBoard', matriz);  
+            if(cor=== '#000000' ||  cor === 'rgb(0, 0, 0)'){console.log('coloquei whitecursor');
+               pixelBoard[i].classList.add('whiteCursor');   
+            } 
         });
     }
 }
@@ -69,8 +64,11 @@ function pixelAdd(qtdPixel, htmlRow, matrizColor,orderPixel) {//Int - Adiciona (
         let pixel = document.createElement('div');
         pixel.className = 'pixel';
         pixel.style.backgroundColor = Array.isArray( matrizColor)  ?   matrizColor[orderPixel] : corFundo ;
-        pixel.textContent = orderPixel-1;
+      //  pixel.textContent = orderPixel-1;
         htmlRow.append(pixel);
+        if(pixel.style.backgroundColor === '#000000' || pixel.style.backgroundColor === 'rgb(0, 0, 0)'){
+            pixel.classList.add('whiteCursor');  console.log('coloquei whitecursor 2') 
+         } 
         orderPixel++;
     }
     return orderPixel;
@@ -115,8 +113,8 @@ function analisarMatriz() {//String - Retorna ('rows')'&'('collums')'&'cores da 
 }
 
 window.onbeforeunload = function () {//Null - Salva a matriz atual no localStorage.pixelBoard
-    let matriz = analisarMatriz();
-    saveLStorage('pixelBoard', matriz);    
+    //let matriz = analisarMatriz();
+   // saveLStorage('pixelBoard', matriz);    
  }
 
 function defineClickEvents() {// start - enventClicks
